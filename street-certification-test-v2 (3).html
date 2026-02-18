@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Street.co.uk — Agent Certification</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════════ */
+:root {
+  --ink: #0d0d0d;
+  --paper: #f7f4ef;
+  --cream: #ede8e0;
+  --accent: #1a4d2e;
+  --accent-light: #2e7d50;
+  --gold: #b8932a;
+  --danger: #c0392b;
+  --mid: #6b6560;
+  --border: #d4cfc7;
+  --shadow: rgba(13,13,13,0.08);
+  --sales: #1a3a6b;
+  --sales-bg: #eef2fa;
+  --lettings: #5a1a6b;
+  --lettings-bg: #f5eefa;
+  --both: #1a4d2e;
+  --both-bg: #eef7f2;
+  --adm-bg: #0e1117;
+  --adm-surface: #161b24;
+  --adm-border: #242c3a;
+  --adm-text: #e8edf5;
+  --adm-mid: #7a8599;
+  --adm-green: #22c55e;
+  --adm-red: #ef4444;
+  --adm-blue: #3b82f6;
+  --adm-purple: #a855f7;
+  --adm-amber: #f59e0b;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh;font-size:15px;line-height:1.6}
+
+/* ═══════════════════════════════════════════════════
+   SCREENS
+═══════════════════════════════════════════════════ */
+.screen{display:none;min-height:100vh}
+.screen.active{display:block}
+#screen-admin{display:none;min-height:100vh;background:var(--adm-bg)}
+
+/* ═══════════════════════════════════════════════════
+   LANDING
+═══════════════════════════════════════════════════ */
+#screen-landing{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 2rem;text-align:center;position:relative;overflow:hidden;background:linear-gradient(160deg,#1a4d2e 0%,#0d2b19 60%,#0a1f12 100%)}
+#screen-landing::before{content:'';position:absolute;inset:0;background-image:radial-gradient(ellipse at 15% 85%,rgba(184,147,42,.18) 0%,transparent 55%),radial-gradient(ellipse at 85% 15%,rgba(46,125,80,.2) 0%,transparent 55%);pointer-events:none}
+#screen-landing::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.018'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+#screen-landing>*{position:relative;z-index:1}
+.land-eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(184,147,42,.85);margin-bottom:1.5rem}
+.land-logo{width:64px;height:64px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:'DM Serif Display',serif;font-size:28px;color:#fff;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.land-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,5vw,3.6rem);color:#fff;line-height:1.1;margin-bottom:.75rem;max-width:580px;letter-spacing:-.5px}
+.land-sub{color:rgba(255,255,255,.55);font-size:.95rem;max-width:420px;margin:0 auto 2.5rem;line-height:1.7}
+.land-ctas{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:var(--gold);color:var(--ink);border:none;padding:.9rem 2.2rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;border-radius:50px;cursor:pointer;letter-spacing:.3px;transition:transform .15s,box-shadow .15s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(184,147,42,.45)}
+.btn-ghost{background:rgba(255,255,255,.08);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);padding:.9rem 2.2rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border-radius:50px;cursor:pointer;transition:all .15s}
+.btn-ghost:hover{background:rgba(255,255,255,.15);color:#fff}
+.land-meta{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);width:100%;max-width:480px}
+.land-stat{color:rgba(255,255,255,.45);font-size:12px;text-align:center}
+.land-stat strong{display:block;color:#fff;font-size:1.4rem;font-weight:700;font-family:'DM Serif Display',serif;margin-bottom:2px}
+
+/* ═══════════════════════════════════════════════════
+   LOGIN
+═══════════════════════════════════════════════════ */
+#screen-login{display:none;min-height:100vh;align-items:center;justify-content:center;padding:2rem;background:var(--paper)}
+#screen-login.active{display:flex}
+.login-card{background:#fff;border-radius:20px;padding:2.5rem;max-width:420px;width:100%;box-shadow:0 4px 40px rgba(0,0,0,.1)}
+.login-back{display:inline-flex;align-items:center;gap:.4rem;font-size:13px;color:var(--mid);cursor:pointer;margin-bottom:2rem;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0;transition:color .15s}
+.login-back:hover{color:var(--accent)}
+.login-logo-sm{width:40px;height:40px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:18px;color:#fff;margin-bottom:1.25rem}
+.login-title{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--ink);margin-bottom:.25rem}
+.login-sub{font-size:.875rem;color:var(--mid);margin-bottom:2rem;line-height:1.6}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--mid);margin-bottom:.4rem}
+.form-group input{width:100%;padding:.8rem 1rem;border:2px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);background:var(--paper);transition:border-color .15s;outline:none}
+.form-group input:focus{border-color:var(--accent);background:#fff}
+.form-group input::placeholder{color:#b0aba4}
+.login-btn{width:100%;background:var(--accent);color:#fff;border:none;padding:.9rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;border-radius:50px;cursor:pointer;margin-top:.5rem;transition:background .15s,transform .15s}
+.login-btn:hover{background:var(--accent-light);transform:translateY(-1px)}
+.login-divider{text-align:center;font-size:12px;color:var(--mid);margin:1.25rem 0;position:relative}
+.login-divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:var(--border)}
+.login-divider span{background:#fff;padding:0 .75rem;position:relative}
+.welcome-back{background:var(--cream);border-radius:12px;padding:1rem 1.25rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+.welcome-avatar{width:36px;height:36px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:14px;flex-shrink:0}
+.welcome-text{font-size:.875rem}
+.welcome-text strong{display:block;color:var(--ink)}
+.welcome-text span{color:var(--mid);font-size:13px}
+.error-msg{background:#fff5f5;border:1px solid #fca5a5;color:var(--danger);font-size:13px;padding:.6rem .9rem;border-radius:8px;margin-bottom:1rem;display:none;animation:errShake .3s ease}
+.error-msg.show{display:flex;align-items:flex-start;gap:.5rem}
+.error-msg .err-icon{flex-shrink:0;font-size:14px;margin-top:1px}
+@keyframes errShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+.field-error{border-color:#fca5a5!important;background:#fff8f8!important}
+.field-ok{border-color:#86efac!important;background:#f0fff4!important}
+.field-hint{font-size:11px;margin-top:.35rem;min-height:16px;display:flex;align-items:center;gap:.3rem;transition:all .2s}
+.field-hint.err{color:var(--danger)}
+.field-hint.ok{color:#16a34a}
+.login-btn:disabled{opacity:.45;cursor:not-allowed;transform:none!important}
+.inp-wrap{position:relative}
+.inp-status{position:absolute;right:.75rem;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none;transition:opacity .2s}
+
+/* ═══════════════════════════════════════════════════
+   MODE SELECT
+═══════════════════════════════════════════════════ */
+#screen-mode{display:none}
+#screen-mode.active{display:block}
+.mode-hero{background:linear-gradient(160deg,#1a4d2e 0%,#0d2b19 100%);padding:2.5rem 2rem 2rem;text-align:center;position:relative;overflow:hidden}
+.mode-hero::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.mode-hero-agent{position:absolute;top:1.2rem;right:1.5rem;display:flex;align-items:center;gap:.6rem;font-size:13px;color:rgba(255,255,255,.7);z-index:1}
+.agent-avatar-sm{width:30px;height:30px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.mode-hero-tag{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(184,147,42,.85);margin-bottom:.6rem;position:relative;z-index:1}
+.mode-hero h2{font-family:'DM Serif Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);color:#fff;margin-bottom:.4rem;position:relative;z-index:1}
+.mode-hero p{color:rgba(255,255,255,.55);font-size:.875rem;max-width:380px;margin:0 auto;position:relative;z-index:1;line-height:1.7}
+.mode-body{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
+.mode-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+@media(max-width:680px){.mode-cards{grid-template-columns:1fr}}
+.mode-card{background:#fff;border:2px solid var(--border);border-radius:18px;padding:1.75rem 1.5rem;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;text-align:center}
+.mode-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.12)}
+.mode-card.sales:hover{border-color:var(--sales);background:var(--sales-bg)}
+.mode-card.lettings:hover{border-color:var(--lettings);background:var(--lettings-bg)}
+.mode-card.both:hover{border-color:var(--both);background:var(--both-bg)}
+.mc-icon{font-size:2.2rem;margin-bottom:.85rem;display:block}
+.mc-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:.25rem .7rem;border-radius:50px;margin-bottom:.5rem}
+.mc-badge.sales{background:rgba(26,58,107,.1);color:var(--sales)}
+.mc-badge.lettings{background:rgba(90,26,107,.1);color:var(--lettings)}
+.mc-badge.both{background:rgba(26,77,46,.1);color:var(--both)}
+.mc-title{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:.35rem}
+.mode-card.sales .mc-title{color:var(--sales)}
+.mode-card.lettings .mc-title{color:var(--lettings)}
+.mode-card.both .mc-title{color:var(--both)}
+.mc-desc{font-size:.8rem;color:var(--mid);line-height:1.6;margin-bottom:1rem}
+.mc-stats{display:flex;gap:.5rem;justify-content:center;margin-bottom:1rem;flex-wrap:wrap}
+.mc-stat-pill{font-size:11px;background:var(--cream);border-radius:50px;padding:.2rem .6rem;color:var(--mid);font-weight:500}
+.mc-sections{text-align:left;font-size:.78rem;color:var(--mid);border-top:1px solid var(--border);padding-top:.8rem;display:flex;flex-direction:column;gap:.3rem}
+.mc-sections span{display:flex;align-items:center;gap:.4rem}
+.mc-sections span::before{content:'✓';opacity:.45;font-size:10px;font-weight:700;flex-shrink:0}
+.mc-btn{width:100%;margin-top:1.2rem;padding:.75rem;border-radius:50px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;color:#fff}
+.mode-card.sales .mc-btn{background:var(--sales)}
+.mode-card.lettings .mc-btn{background:var(--lettings)}
+.mode-card.both .mc-btn{background:var(--both)}
+.mc-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* ═══════════════════════════════════════════════════
+   TEST SHELL
+═══════════════════════════════════════════════════ */
+#screen-test{display:none}
+#screen-test.active{display:block}
+.test-header{color:#fff;padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.3)}
+.test-header.hdr-sales{background:var(--sales)}
+.test-header.hdr-lettings{background:var(--lettings)}
+.test-header.hdr-both{background:var(--accent)}
+.hdr-left{font-family:'DM Serif Display',serif;font-size:.95rem;color:#fff;min-width:140px}
+.hdr-left span{font-size:11px;display:block;color:rgba(255,255,255,.5);font-family:'DM Sans',sans-serif;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+.hdr-track-pill{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:rgba(255,255,255,.15);border-radius:50px;padding:2px 7px;margin-left:6px;vertical-align:middle}
+.prog-wrap{flex:1;max-width:300px;margin:0 1.5rem}
+.prog-track{height:5px;background:rgba(255,255,255,.2);border-radius:99px;overflow:hidden}
+.prog-fill{height:100%;background:var(--gold);border-radius:99px;transition:width .4s ease;width:0}
+.prog-label{font-size:10px;color:rgba(255,255,255,.5);margin-top:3px;text-align:right}
+.hdr-right{display:flex;align-items:center;gap:1rem}
+.score-chip{font-size:12px;color:rgba(255,255,255,.7);white-space:nowrap}
+.score-chip strong{color:#fff;font-size:14px}
+.section-banner{background:var(--cream);border-left:4px solid var(--accent);margin:1.75rem 1.5rem 0;border-radius:0 10px 10px 0;padding:.9rem 1.2rem;display:flex;align-items:center;gap:.85rem;animation:fadeIn .3s ease}
+.section-banner.hdr-sales{border-left-color:var(--sales)}
+.section-banner.hdr-lettings{border-left-color:var(--lettings)}
+.sec-icon{width:36px;height:36px;min-width:36px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem}
+.section-banner.hdr-sales .sec-icon{background:var(--sales)}
+.section-banner.hdr-lettings .sec-icon{background:var(--lettings)}
+.sec-info h3{font-size:.72rem;color:var(--mid);text-transform:uppercase;letter-spacing:1.5px;font-weight:700}
+.sec-info p{font-size:.85rem;color:var(--ink);margin-top:1px}
+.q-area{padding:1.5rem 1.5rem;max-width:860px;margin:0 auto}
+.q-card{background:#fff;border-radius:14px;padding:1.75rem 2rem;box-shadow:0 2px 16px var(--shadow);animation:slideUp .3s ease both}
+@keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.q-meta{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem}
+.q-num{width:30px;height:30px;background:var(--accent);color:#fff;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.q-num.hdr-sales{background:var(--sales)}
+.q-num.hdr-lettings{background:var(--lettings)}
+.q-tag{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid)}
+.q-text{font-size:1rem;font-weight:500;line-height:1.6;margin-bottom:1.35rem;color:var(--ink)}
+.opts-grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+@media(max-width:580px){.opts-grid{grid-template-columns:1fr}}
+.opt-btn{background:var(--paper);border:2px solid var(--border);border-radius:9px;padding:.65rem .9rem;text-align:left;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.84rem;color:var(--ink);line-height:1.45;transition:border-color .15s,background .15s,transform .1s;display:flex;align-items:flex-start;gap:.55rem}
+.opt-btn:hover:not(:disabled){border-color:var(--accent-light);background:#f0f6f2;transform:translateY(-1px)}
+.opt-btn.hdr-sales:hover:not(:disabled){border-color:var(--sales);background:var(--sales-bg)}
+.opt-btn.hdr-lettings:hover:not(:disabled){border-color:var(--lettings);background:var(--lettings-bg)}
+.opt-letter{width:20px;height:20px;min-width:20px;background:var(--cream);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--mid);margin-top:2px;flex-shrink:0;transition:background .15s,color .15s}
+.opt-btn.selected{border-color:var(--accent);background:#f0f6f2}
+.opt-btn.selected.hdr-sales{border-color:var(--sales);background:var(--sales-bg)}
+.opt-btn.selected.hdr-lettings{border-color:var(--lettings);background:var(--lettings-bg)}
+.opt-btn.selected .opt-letter{background:var(--accent);color:#fff}
+.opt-btn.selected.hdr-sales .opt-letter{background:var(--sales)}
+.opt-btn.selected.hdr-lettings .opt-letter{background:var(--lettings)}
+.opt-btn.correct{border-color:#22c55e;background:#f0fff4}
+.opt-btn.correct .opt-letter{background:#22c55e;color:#fff}
+.opt-btn.wrong{border-color:var(--danger);background:#fff5f5}
+.opt-btn.wrong .opt-letter{background:var(--danger);color:#fff}
+.opt-btn:disabled{cursor:default}
+.feedback{margin-top:.9rem;display:none;align-items:flex-start;gap:.45rem;font-size:.84rem;line-height:1.55;padding:.6rem .8rem;border-radius:8px}
+.feedback.show{display:flex}
+.feedback.ok{color:#16a34a;background:#f0fff4}
+.feedback.err{color:var(--danger);background:#fff5f5}
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.25rem}
+.btn-nav{padding:.65rem 1.4rem;border-radius:50px;border:2px solid var(--border);background:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink);transition:all .15s}
+.btn-nav:hover{border-color:var(--accent);color:var(--accent)}
+.btn-nav.hdr-sales:hover{border-color:var(--sales);color:var(--sales)}
+.btn-nav.hdr-lettings:hover{border-color:var(--lettings);color:var(--lettings)}
+.btn-nav.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-nav.primary.hdr-sales{background:var(--sales);border-color:var(--sales)}
+.btn-nav.primary.hdr-lettings{background:var(--lettings);border-color:var(--lettings)}
+.btn-nav.primary:hover{opacity:.9}
+.btn-nav:disabled{opacity:.3;cursor:default}
+
+/* ═══════════════════════════════════════════════════
+   RESULTS
+═══════════════════════════════════════════════════ */
+#screen-results{display:none}
+#screen-results.active{display:block}
+.res-hero{padding:3.5rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.res-hero.hdr-sales::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,#1a3a6b 0%,#0d1f40 100%)}
+.res-hero.hdr-lettings::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,#5a1a6b 0%,#2e0d38 100%)}
+.res-hero.hdr-both::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,#1a4d2e 0%,#0d2b19 100%)}
+.res-hero>*{position:relative;z-index:1}
+.res-track-label{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(184,147,42,.85);margin-bottom:.4rem}
+.res-agent-name{font-size:.85rem;color:rgba(255,255,255,.5);margin-bottom:.4rem}
+.big-score{font-family:'DM Serif Display',serif;font-size:clamp(4.5rem,11vw,8rem);color:#fff;line-height:1}
+.score-suffix{color:rgba(255,255,255,.3);font-size:.45em}
+.res-verdict{font-size:1.15rem;font-weight:600;margin:.5rem 0 .25rem;color:#fff}
+.res-sub{color:rgba(255,255,255,.55);font-size:.875rem;max-width:380px;margin:0 auto 1.75rem;line-height:1.7}
+.cert-badge{display:inline-block;background:var(--gold);color:var(--ink);padding:.45rem 1.3rem;border-radius:50px;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.75rem}
+.fail-badge{display:inline-block;background:rgba(192,57,43,.8);color:#fff;padding:.45rem 1.3rem;border-radius:50px;font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.75rem}
+.save-status{font-size:12px;color:rgba(255,255,255,.4);margin-top:.75rem}
+.save-status.saved{color:rgba(34,197,94,.8)}
+.res-body{max-width:780px;margin:0 auto;padding:1.75rem 1.5rem}
+.tally{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.75rem}
+.tally-item{text-align:center}
+.tally-n{font-family:'DM Serif Display',serif;font-size:2rem}
+.tally-l{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--mid)}
+.tally-item.g .tally-n{color:#16a34a}
+.tally-item.r .tally-n{color:var(--danger)}
+.tally-item.o .tally-n{color:var(--gold)}
+.cert-block{background:var(--cream);border:2px solid var(--border);border-radius:14px;padding:1.75rem;margin-bottom:1.75rem;position:relative;overflow:hidden}
+.cert-block::before{content:'✦';position:absolute;top:-10px;right:20px;font-size:80px;color:rgba(0,0,0,.03);pointer-events:none}
+.cert-block h2{font-family:'DM Serif Display',serif;font-size:1.2rem;margin-bottom:.65rem;color:var(--accent)}
+.cert-block.hdr-sales h2{color:var(--sales)}
+.cert-block.hdr-lettings h2{color:var(--lettings)}
+.cert-text{font-size:.875rem;line-height:1.85;color:var(--ink)}
+.cert-text strong{color:var(--accent)}
+.cert-block.hdr-sales .cert-text strong{color:var(--sales)}
+.cert-block.hdr-lettings .cert-text strong{color:var(--lettings)}
+.sec-breakdown{margin-bottom:1.75rem}
+.sec-breakdown h3{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--mid);margin-bottom:.85rem}
+.sec-row{display:flex;align-items:center;gap:.85rem;margin-bottom:.55rem}
+.sec-name{font-size:.84rem;min-width:220px;color:var(--ink);flex-shrink:0}
+.sec-bar{flex:1;height:7px;background:var(--cream);border-radius:99px;overflow:hidden}
+.sec-fill{height:100%;border-radius:99px;transition:width .6s .3s}
+.sec-pct{font-size:12px;font-weight:700;min-width:42px;text-align:right}
+.ak-table{background:#fff;border-radius:14px;border:1px solid var(--border);overflow:hidden;margin:1.75rem 0;box-shadow:0 1px 8px var(--shadow)}
+.ak-header{padding:1rem 1.25rem;background:var(--ink);color:#fff;font-weight:600;font-size:.875rem;display:flex;justify-content:space-between;align-items:center}
+.ak-toggle{font-size:12px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:.25rem .75rem;border-radius:20px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
+.ak-toggle:hover{background:rgba(255,255,255,.2);color:#fff}
+.ak-body{display:none}
+.ak-body.open{display:block}
+.ak-row{display:grid;grid-template-columns:38px 1fr 100px 90px;gap:.4rem;padding:.65rem 1.25rem;border-bottom:1px solid var(--border);font-size:.8rem;align-items:center}
+.ak-row:last-child{border-bottom:none}
+.ak-row.ok{background:#f0fff4}
+.ak-row.bad{background:#fff5f5}
+.ak-q{font-weight:700;color:var(--mid);font-family:'JetBrains Mono',monospace}
+.ak-answer{font-weight:600;color:var(--accent);font-size:.78rem}
+.ak-result{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.ak-result.pass{color:#16a34a}
+.ak-result.fail{color:var(--danger)}
+.res-actions{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem}
+.btn-action{padding:.75rem 1.6rem;border-radius:50px;border:2px solid var(--accent);background:transparent;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;color:var(--accent);transition:all .15s}
+.btn-action.solid{background:var(--accent);color:#fff}
+.btn-action.hdr-sales{border-color:var(--sales);color:var(--sales)}
+.btn-action.hdr-sales.solid{background:var(--sales);color:#fff}
+.btn-action.hdr-lettings{border-color:var(--lettings);color:var(--lettings)}
+.btn-action.hdr-lettings.solid{background:var(--lettings);color:#fff}
+.btn-action:hover{opacity:.85;transform:translateY(-1px)}
+
+/* ═══════════════════════════════════════════════════
+   ADMIN DASHBOARD
+═══════════════════════════════════════════════════ */
+.adm-header{background:var(--adm-surface);border-bottom:1px solid var(--adm-border);padding:1rem 1.75rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.adm-logo{display:flex;align-items:center;gap:.75rem}
+.adm-logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:15px;color:#fff}
+.adm-logo-text{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--adm-text)}
+.adm-logo-sub{font-size:11px;color:var(--adm-mid);font-family:'DM Sans',sans-serif;font-weight:400;display:block;margin-top:-2px}
+.adm-header-right{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.adm-btn{padding:.5rem 1rem;border-radius:8px;border:1px solid var(--adm-border);background:transparent;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;color:var(--adm-mid);transition:all .15s}
+.adm-btn:hover{border-color:var(--adm-text);color:var(--adm-text)}
+.adm-btn.accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.adm-btn.accent:hover{background:var(--accent-light)}
+.adm-btn.danger{background:rgba(239,68,68,.1);border-color:var(--adm-red);color:var(--adm-red)}
+.adm-btn.danger:hover{background:var(--adm-red);color:#fff}
+.adm-body{padding:1.75rem;max-width:1200px;margin:0 auto}
+.adm-page-title{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--adm-text);margin-bottom:.25rem}
+.adm-page-sub{font-size:.85rem;color:var(--adm-mid);margin-bottom:2rem}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.75rem}
+@media(max-width:760px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
+.stat-card{background:var(--adm-surface);border:1px solid var(--adm-border);border-radius:12px;padding:1.25rem 1.4rem}
+.stat-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--adm-mid);margin-bottom:.4rem}
+.stat-value{font-family:'DM Serif Display',serif;font-size:2rem;line-height:1;margin-bottom:.25rem}
+.stat-card.green .stat-value{color:var(--adm-green)}
+.stat-card.red .stat-value{color:var(--adm-red)}
+.stat-card.blue .stat-value{color:var(--adm-blue)}
+.stat-card.amber .stat-value{color:var(--adm-amber)}
+.stat-sub{font-size:12px;color:var(--adm-mid)}
+.track-breakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.75rem}
+@media(max-width:680px){.track-breakdown{grid-template-columns:1fr}}
+.track-card{background:var(--adm-surface);border:1px solid var(--adm-border);border-radius:12px;padding:1.1rem 1.25rem;display:flex;align-items:center;gap:1rem}
+.track-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.track-dot.sales{background:#3b82f6}
+.track-dot.lettings{background:#a855f7}
+.track-dot.both{background:#22c55e}
+.track-info{flex:1}
+.track-name{font-size:.85rem;font-weight:600;color:var(--adm-text)}
+.track-stats{font-size:12px;color:var(--adm-mid);margin-top:1px}
+.track-rate{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:500}
+.track-rate.good{color:var(--adm-green)}
+.track-rate.avg{color:var(--adm-amber)}
+.track-rate.bad{color:var(--adm-red)}
+.adm-table-wrap{background:var(--adm-surface);border:1px solid var(--adm-border);border-radius:12px;overflow:hidden}
+.adm-table-toolbar{padding:1rem 1.25rem;border-bottom:1px solid var(--adm-border);display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.adm-search{flex:1;min-width:180px;background:var(--adm-bg);border:1px solid var(--adm-border);border-radius:8px;padding:.55rem .9rem;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--adm-text);outline:none;transition:border-color .15s}
+.adm-search:focus{border-color:#3b5a8a}
+.adm-search::placeholder{color:var(--adm-mid)}
+.adm-filter-select{background:var(--adm-bg);border:1px solid var(--adm-border);border-radius:8px;padding:.52rem .9rem;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--adm-text);cursor:pointer;outline:none}
+.adm-table{width:100%;border-collapse:collapse}
+.adm-table th{background:rgba(255,255,255,.03);padding:.75rem 1rem;text-align:left;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--adm-mid);border-bottom:1px solid var(--adm-border);white-space:nowrap;cursor:pointer;user-select:none;transition:color .15s}
+.adm-table th:hover{color:var(--adm-text)}
+.adm-table td{padding:.8rem 1rem;font-size:.84rem;color:var(--adm-text);border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
+.adm-table tr:last-child td{border-bottom:none}
+.adm-table tr:hover td{background:rgba(255,255,255,.02)}
+.badge{display:inline-flex;align-items:center;gap:.3rem;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:.2rem .55rem;border-radius:50px}
+.badge.pass{background:rgba(34,197,94,.12);color:var(--adm-green)}
+.badge.fail{background:rgba(239,68,68,.12);color:var(--adm-red)}
+.badge.track-sales{background:rgba(59,130,246,.12);color:var(--adm-blue)}
+.badge.track-lettings{background:rgba(168,85,247,.12);color:var(--adm-purple)}
+.badge.track-both{background:rgba(34,197,94,.12);color:var(--adm-green)}
+.score-bar-wrap{display:flex;align-items:center;gap:.6rem}
+.score-bar-bg{flex:1;height:5px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;max-width:80px}
+.score-bar-fill{height:100%;border-radius:99px}
+.score-val{font-family:'JetBrains Mono',monospace;font-size:12px;white-space:nowrap}
+.empty-state{text-align:center;padding:4rem 2rem;color:var(--adm-mid)}
+.empty-state-icon{font-size:2.5rem;display:block;margin-bottom:.75rem;opacity:.4}
+.empty-state p{font-size:.875rem}
+.adm-table-footer{padding:.75rem 1.25rem;border-top:1px solid var(--adm-border);font-size:12px;color:var(--adm-mid);display:flex;justify-content:space-between;align-items:center}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px)}
+.modal-card{background:var(--adm-surface);border:1px solid var(--adm-border);border-radius:16px;padding:2rem;max-width:380px;width:100%;text-align:center}
+.modal-icon{font-size:2rem;margin-bottom:.85rem}
+.modal-title{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--adm-text);margin-bottom:.35rem}
+.modal-sub{font-size:.84rem;color:var(--adm-mid);margin-bottom:1.5rem;line-height:1.6}
+.modal-input{width:100%;background:var(--adm-bg);border:1px solid var(--adm-border);border-radius:8px;padding:.75rem 1rem;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--adm-text);outline:none;text-align:center;letter-spacing:2px;margin-bottom:.75rem;transition:border-color .15s}
+.modal-input:focus{border-color:#3b5a8a}
+.modal-input::placeholder{letter-spacing:0;font-size:13px}
+.modal-error{font-size:12px;color:var(--adm-red);margin-bottom:.75rem;min-height:18px}
+.modal-btns{display:flex;gap:.6rem}
+.modal-btn{flex:1;padding:.75rem;border-radius:8px;border:1px solid var(--adm-border);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.modal-btn.cancel{background:transparent;color:var(--adm-mid)}
+.modal-btn.cancel:hover{color:var(--adm-text);border-color:var(--adm-text)}
+.modal-btn.confirm{background:var(--accent);border-color:var(--accent);color:#fff}
+.modal-btn.confirm:hover{background:var(--accent-light)}
+.modal-note{font-size:11px;color:var(--adm-mid);margin-top:.85rem;padding-top:.85rem;border-top:1px solid var(--adm-border);line-height:1.6}
+.refresh-badge{background:rgba(255,255,255,.06);border:1px solid var(--adm-border);border-radius:6px;padding:.2rem .5rem;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--adm-mid)}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ LANDING ═══════════ -->
+<div id="screen-landing">
+  <div class="land-eyebrow">Street.co.uk Platform Training</div>
+  <div class="land-logo">S</div>
+  <h1 class="land-title">Agent Certification Test</h1>
+  <p class="land-sub">Sign in with your name and work email to begin. Your results are recorded and shared with your manager automatically.</p>
+  <div class="land-ctas">
+    <button class="btn-primary" onclick="showLogin()">Agent Sign In →</button>
+  </div>
+  <a href="#" onclick="showAdminLogin();return false;" id="admin-entry" title="Manager access" style="position:fixed;bottom:18px;right:22px;font-size:11px;color:rgba(255,255,255,.18);text-decoration:none;letter-spacing:.5px;transition:color .2s;z-index:10;" onmouseover="this.style.color='rgba(255,255,255,.5)'" onmouseout="this.style.color='rgba(255,255,255,.18)'">Manager</a>
+  <div class="land-meta">
+    <div class="land-stat"><strong>3</strong>Tracks</div>
+    <div class="land-stat"><strong>50</strong>Questions</div>
+    <div class="land-stat"><strong>90%</strong>Pass Mark</div>
+    <div class="land-stat"><strong>~30 min</strong>Est. Time</div>
+  </div>
+</div>
+
+<!-- ═══════════ LOGIN ═══════════ -->
+<div id="screen-login">
+  <div class="login-card">
+    <button class="login-back" onclick="showLanding()">← Back</button>
+    <div class="login-logo-sm">S</div>
+    <div class="login-title">Agent Sign In</div>
+    <div class="login-sub">Enter your details to begin. No password needed — just your name and work email.</div>
+
+    <div class="error-msg" id="login-error"><span class="err-icon">⚠</span><span id="login-error-text"></span></div>
+
+    <!-- Returning user banner -->
+    <div id="welcome-back-box" class="welcome-back" style="display:none">
+      <div class="welcome-avatar" id="wb-avatar"></div>
+      <div class="welcome-text">
+        <strong id="wb-name"></strong>
+        <span id="wb-email"></span>
+      </div>
+    </div>
+
+    <!-- New user fields -->
+    <div id="login-fields">
+      <div class="form-group">
+        <label for="inp-name">Full Name</label>
+        <div class="inp-wrap">
+          <input type="text" id="inp-name" placeholder="e.g. Sarah Johnson" autocomplete="name"
+            oninput="validateName(this)">
+          <span class="inp-status" id="name-status"></span>
+        </div>
+        <div class="field-hint" id="name-hint"></div>
+      </div>
+      <div class="form-group">
+        <label for="inp-email">Work Email</label>
+        <div class="inp-wrap">
+          <input type="email" id="inp-email" placeholder="sarah@youragency.co.uk" autocomplete="email"
+            oninput="validateEmailField(this,'email-hint','email-status')"
+            onblur="validateEmailField(this,'email-hint','email-status')">
+          <span class="inp-status" id="email-status"></span>
+        </div>
+        <div class="field-hint" id="email-hint"></div>
+      </div>
+    </div>
+
+    <!-- Returning: sign in as someone else -->
+    <div id="login-returning" style="display:none">
+      <div class="login-divider"><span>or sign in as someone else</span></div>
+      <div class="form-group">
+        <label for="inp-email-alt">Different agent's email</label>
+        <div class="inp-wrap">
+          <input type="email" id="inp-email-alt" placeholder="Different email address" autocomplete="email"
+            oninput="validateEmailField(this,'email-alt-hint','email-alt-status')"
+            onblur="validateEmailField(this,'email-alt-hint','email-alt-status')">
+          <span class="inp-status" id="email-alt-status"></span>
+        </div>
+        <div class="field-hint" id="email-alt-hint"></div>
+      </div>
+    </div>
+
+    <button class="login-btn" id="login-btn" onclick="handleLogin()">Start Certification →</button>
+  </div>
+</div>
+
+<!-- ═══════════ MODE SELECT ═══════════ -->
+<div id="screen-mode">
+  <div class="mode-hero">
+    <div class="mode-hero-agent">
+      <div class="agent-avatar-sm" id="mode-avatar"></div>
+      <span id="mode-agent-name"></span>
+    </div>
+    <div class="mode-hero-tag">Step 1 of 2 — Choose Your Training Track</div>
+    <h2>What are you training on today?</h2>
+    <p>Select the track that matches your role. Only the relevant questions will load and you'll be graded accordingly.</p>
+  </div>
+  <div class="mode-body">
+    <div class="mode-cards">
+      <div class="mode-card sales" onclick="selectMode('sales')">
+        <span class="mc-icon">🏡</span>
+        <div class="mc-badge sales">Sales</div>
+        <div class="mc-title">Sales Only</div>
+        <p class="mc-desc">For agents working exclusively in sales — from listing a property through to an accepted offer and beyond.</p>
+        <div class="mc-stats">
+          <span class="mc-stat-pill">37 questions</span>
+          <span class="mc-stat-pill">7 sections</span>
+          <span class="mc-stat-pill">90% to pass</span>
+        </div>
+        <div class="mc-sections">
+          <span>Adding &amp; Onboarding a Property</span>
+          <span>Creating an Instruction &amp; Listing</span>
+          <span>Viewings &amp; Feedback</span>
+          <span>Sales Offers &amp; Progression</span>
+          <span>Applicants &amp; Matching</span>
+          <span>Valuations</span>
+          <span>Daily Tasks &amp; Communications</span>
+        </div>
+        <button class="mc-btn">Start Sales Test →</button>
+      </div>
+      <div class="mode-card lettings" onclick="selectMode('lettings')">
+        <span class="mc-icon">🔑</span>
+        <div class="mc-badge lettings">Lettings</div>
+        <div class="mc-title">Lettings Only</div>
+        <p class="mc-desc">For agents working exclusively in lettings — viewings, offers, applications and tenancy creation.</p>
+        <div class="mc-stats">
+          <span class="mc-stat-pill">36 questions</span>
+          <span class="mc-stat-pill">7 sections</span>
+          <span class="mc-stat-pill">90% to pass</span>
+        </div>
+        <div class="mc-sections">
+          <span>Adding &amp; Onboarding a Property</span>
+          <span>Viewings &amp; Feedback</span>
+          <span>Lettings Offers &amp; Applications</span>
+          <span>Applicants &amp; Matching</span>
+          <span>Valuations</span>
+          <span>Daily Tasks &amp; Communications</span>
+        </div>
+        <button class="mc-btn">Start Lettings Test →</button>
+      </div>
+      <div class="mode-card both" onclick="selectMode('both')">
+        <span class="mc-icon">⚡</span>
+        <div class="mc-badge both">Full Test</div>
+        <div class="mc-title">Sales &amp; Lettings</div>
+        <p class="mc-desc">For agents handling both — the complete certification covering all 8 sections and 50 questions.</p>
+        <div class="mc-stats">
+          <span class="mc-stat-pill">50 questions</span>
+          <span class="mc-stat-pill">8 sections</span>
+          <span class="mc-stat-pill">90% to pass</span>
+        </div>
+        <div class="mc-sections">
+          <span>Adding &amp; Onboarding a Property</span>
+          <span>Creating an Instruction &amp; Listing</span>
+          <span>Viewings &amp; Feedback</span>
+          <span>Sales Offers &amp; Progression</span>
+          <span>Lettings Offers &amp; Applications</span>
+          <span>Applicants &amp; Matching</span>
+          <span>Valuations</span>
+          <span>Daily Tasks &amp; Communications</span>
+        </div>
+        <button class="mc-btn">Start Full Test →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ TEST SHELL ═══════════ -->
+<div id="screen-test">
+  <header class="test-header" id="test-header">
+    <div class="hdr-left">
+      Street.co.uk<span id="mode-badge-el" class="hdr-track-pill"></span>
+      <span id="hdr-section">Loading…</span>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+      <div class="prog-label" id="prog-label">Q 1 of —</div>
+    </div>
+    <div class="hdr-right">
+      <div class="score-chip">Score <strong id="live-score">—</strong></div>
+    </div>
+  </header>
+  <div id="q-container"></div>
+</div>
+
+<!-- ═══════════ RESULTS ═══════════ -->
+<div id="screen-results">
+  <div class="res-hero" id="res-hero">
+    <div class="res-track-label" id="res-track-label"></div>
+    <div class="res-agent-name" id="res-agent-name"></div>
+    <div class="big-score" id="res-score">0<span class="score-suffix">%</span></div>
+    <div class="res-verdict" id="res-verdict"></div>
+    <div class="res-sub" id="res-sub"></div>
+    <div id="res-badge"></div>
+    <div class="save-status" id="save-status">Saving results…</div>
+  </div>
+  <div class="res-body" id="res-body"></div>
+</div>
+
+<!-- ═══════════ ADMIN DASHBOARD ═══════════ -->
+<div id="screen-admin">
+  <header class="adm-header">
+    <div class="adm-logo">
+      <div class="adm-logo-icon">S</div>
+      <div>
+        <div class="adm-logo-text">Street.co.uk <span style="font-family:'DM Sans',sans-serif;font-weight:400;font-size:.9rem;opacity:.6">Certification</span></div>
+        <span class="adm-logo-sub">Manager Dashboard</span>
+      </div>
+    </div>
+    <div class="adm-header-right">
+      <span class="refresh-badge" id="last-refresh">—</span>
+      <button class="adm-btn" onclick="loadDashboard()">↻ Refresh</button>
+      <button class="adm-btn" onclick="exportCSV()">↓ Export CSV</button>
+      <button class="adm-btn danger" onclick="clearAllResults()" title="Delete all result records">🗑 Clear All</button>
+      <button class="adm-btn accent" onclick="showScreen('screen-landing')">← Exit to Agent Portal</button>
+    </div>
+  </header>
+  <div class="adm-body">
+    <div class="adm-page-title">Certification Results</div>
+    <div class="adm-page-sub" id="adm-page-sub">Loading data…</div>
+    <div class="stat-grid">
+      <div class="stat-card blue"><div class="stat-label">Total Attempts</div><div class="stat-value" id="st-total">—</div><div class="stat-sub">across all tracks</div></div>
+      <div class="stat-card green"><div class="stat-label">Passed</div><div class="stat-value" id="st-passed">—</div><div class="stat-sub" id="st-pass-rate">—% pass rate</div></div>
+      <div class="stat-card red"><div class="stat-label">Failed</div><div class="stat-value" id="st-failed">—</div><div class="stat-sub">require retry</div></div>
+      <div class="stat-card amber"><div class="stat-label">Unique Agents</div><div class="stat-value" id="st-agents">—</div><div class="stat-sub">have attempted</div></div>
+    </div>
+    <div class="track-breakdown" id="track-breakdown"></div>
+    <div class="adm-table-wrap">
+      <div class="adm-table-toolbar">
+        <input class="adm-search" id="adm-search" placeholder="Search by name or email…" oninput="filterTable()">
+        <select class="adm-filter-select" id="filter-track" onchange="filterTable()">
+          <option value="">All Tracks</option>
+          <option value="sales">Sales Only</option>
+          <option value="lettings">Lettings Only</option>
+          <option value="both">Sales &amp; Lettings</option>
+        </select>
+        <select class="adm-filter-select" id="filter-status" onchange="filterTable()">
+          <option value="">All Results</option>
+          <option value="pass">Passed</option>
+          <option value="fail">Failed</option>
+        </select>
+      </div>
+      <table class="adm-table" id="adm-table">
+        <thead>
+          <tr>
+            <th onclick="sortTable('agentName')">Agent ↕</th>
+            <th onclick="sortTable('agentEmail')">Email ↕</th>
+            <th onclick="sortTable('track')">Track ↕</th>
+            <th onclick="sortTable('pct')">Score ↕</th>
+            <th>Result</th>
+            <th onclick="sortTable('startTime')">Started ↕</th>
+            <th onclick="sortTable('endTime')">Completed ↕</th>
+            <th>Duration</th>
+          </tr>
+        </thead>
+        <tbody id="adm-tbody"></tbody>
+      </table>
+      <div class="adm-table-footer">
+        <span id="table-count">0 records</span>
+        <span id="table-filtered" style="display:none;color:var(--adm-amber)"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ ADMIN LOGIN SCREEN ═══════════ -->
+<div id="screen-admin-login" style="display:none;min-height:100vh;background:#0e1117;align-items:center;justify-content:center;padding:2rem;flex-direction:column;">
+  <div style="width:100%;max-width:400px;">
+    <button onclick="showLanding()" style="background:none;border:none;color:rgba(255,255,255,.35);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;padding:0;margin-bottom:2rem;display:flex;align-items:center;gap:.4rem;transition:color .15s;" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">← Back to agent portal</button>
+    <div style="background:#161b24;border:1px solid #242c3a;border-radius:20px;padding:2.5rem;">
+      <div style="width:44px;height:44px;background:#1a4d2e;border-radius:11px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:20px;color:#fff;margin-bottom:1.5rem;">S</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:#e8edf5;margin-bottom:.3rem;">Manager Dashboard</div>
+      <div style="font-size:.84rem;color:#7a8599;margin-bottom:.3rem;line-height:1.6;">This area is restricted to training managers. Enter your access password to continue.</div>
+      <div style="font-size:.75rem;color:#3b82f6;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.15);border-radius:6px;padding:.5rem .75rem;margin-bottom:1.75rem;margin-top:.75rem;">🔒 Separate from the agent sign-in flow</div>
+      <div id="admin-login-error" style="display:none;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#ef4444;font-size:13px;padding:.6rem .9rem;border-radius:8px;margin-bottom:1rem;"></div>
+      <div style="margin-bottom:1.25rem;">
+        <label style="display:block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#7a8599;margin-bottom:.45rem;">Access Password</label>
+        <input id="admin-pw-input" type="password" placeholder="Enter manager password" autocomplete="current-password"
+          style="width:100%;padding:.8rem 1rem;background:#0e1117;border:2px solid #242c3a;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;color:#e8edf5;outline:none;transition:border-color .15s;letter-spacing:.5px;"
+          onfocus="this.style.borderColor='#2e7d50'" onblur="this.style.borderColor='#242c3a'"
+          onkeydown="if(event.key==='Enter')checkAdminPw()">
+      </div>
+      <button onclick="checkAdminPw()" style="width:100%;background:#1a4d2e;color:#fff;border:none;padding:.9rem;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;border-radius:50px;cursor:pointer;transition:background .15s;" onmouseover="this.style.background='#2e7d50'" onmouseout="this.style.background='#1a4d2e'">Access Dashboard →</button>
+      <div style="font-size:11px;color:#3d4757;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid #242c3a;line-height:1.7;">Default password: <span style="color:#7a8599;font-family:'JetBrains Mono',monospace;">Street2025!</span><br>Update the <code style="color:#7a8599;">ADMIN_PASSWORD</code> constant in the source before deployment.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════
+   CONSTANTS
+══════════════════════════════════════════════════ */
+const ADMIN_PASSWORD = 'Street2025!';
+const RESULTS_KEY    = 'street_cert_results_v3';
+const PROFILE_KEY    = 'street_cert_profile_v2';
+const LETTERS        = ['A','B','C','D','E','F'];
+const MODE_LABELS    = { sales:'Sales Only', lettings:'Lettings Only', both:'Sales & Lettings' };
+const MODE_HDR       = { sales:'hdr-sales', lettings:'hdr-lettings', both:'hdr-both' };
+
+/* ══════════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════════ */
+let agent      = null;
+let testMode   = null;
+let activeQs   = [];
+let activeSecs = [];
+let answers    = [];
+let submitted  = [];
+let current    = 0;
+let startTime  = null;
+let allResults = [];
+let sortKey    = 'endTime';
+let sortAsc    = false;
+
+/* ══════════════════════════════════════════════════
+   SECTIONS
+══════════════════════════════════════════════════ */
+const ALL_SECTIONS = [
+  { id:'add_property', label:'Adding & Onboarding a Property',    icon:'🏗️', modes:['sales','lettings','both'] },
+  { id:'instruction',  label:'Creating an Instruction & Listing',  icon:'📋', modes:['sales','both'] },
+  { id:'viewings',     label:'Viewings & Feedback',               icon:'🏠', modes:['sales','lettings','both'] },
+  { id:'sales_offers', label:'Sales Offers & Progression',        icon:'🤝', modes:['sales','both'] },
+  { id:'lettings_app', label:'Lettings Offers & Applications',    icon:'🔑', modes:['lettings','both'] },
+  { id:'applicants',   label:'Applicants & Matching',             icon:'👥', modes:['sales','lettings','both'] },
+  { id:'valuations',   label:'Valuations',                        icon:'📊', modes:['sales','lettings','both'] },
+  { id:'daily',        label:'Daily Tasks & Communications',      icon:'✉️',  modes:['sales','lettings','both'] },
+];
+
+/* ══════════════════════════════════════════════════
+   QUESTION BANK — answers deliberately distributed across A–F
+   Each question's distractors are plausible Street workflows
+══════════════════════════════════════════════════ */
+const ALL_QUESTIONS = [
+
+  /* ─── ADD PROPERTY (7 — all modes) ─── */
+  {
+    section:'add_property', modes:['sales','lettings','both'],
+    q:'When first onboarding a property in Street, which step must you complete before you can access the Property Details tab?',
+    options:['A. Enter the asking price and tenure','B. Upload at least one photograph of the property','C. Set the occupancy status and assign to a branch','D. Create the owner\'s person record first','E. Publish the listing to a portal to activate the property','F. Complete the Property Information Questionnaire in full'],
+    answer:'B',
+    exp:'The Photos tab must be completed with at least one photo before Street unlocks the Property Details tab as part of the onboarding flow.'
+  },
+  {
+    section:'add_property', modes:['sales','lettings','both'],
+    q:'A property currently has an active listing and you need to change the branch it is assigned to. What must you do first?',
+    options:['A. Contact Street Support — branch reassignments require admin approval','B. Archive the property and recreate it under the correct branch','C. Simply use the branch dropdown — no other steps are needed','D. Delete and rebuild the listing in the new branch\'s portal feed','E. Low profile the listing before changing the branch, as it is linked to the branch\'s portal feed','F. The branch field is locked once a listing is live and cannot be changed'],
+    answer:'E',
+    exp:'The listing is tied to the branch\'s portal feed. You must low profile the listing first, change the branch, then re-activate the listing.'
+  },
+  {
+    section:'add_property', modes:['sales','lettings','both'],
+    q:'Where in Street do you store sensitive access information — such as a door code for accompanied viewings — so it is accessible securely in the field?',
+    options:['A. In the activity stream as a private internal note','B. In the property\'s description field with a note to agents','C. Emailed to the assigned agent before each viewing automatically','D. In the Property Access Information field — visible in the Agent App behind biometric security','E. In a document attached under the property\'s Documents tab','F. In branch settings under Viewing Preferences'],
+    answer:'D',
+    exp:'The Property Access Information field stores sensitive access info. It appears in the Street Agent App behind biometric (Face ID/fingerprint) security.'
+  },
+  {
+    section:'add_property', modes:['sales','lettings','both'],
+    q:'What are the correct limits for key features on a property listing to avoid a portal publishing failure?',
+    options:['A. Maximum 5 features, 100 characters each','B. Maximum 8 features, 150 characters each','C. Maximum 12 features, 200 characters each','D. Maximum 15 features, 250 characters each','E. Maximum 10 features, 100 characters each','F. Maximum 10 features, 200 characters each'],
+    answer:'F',
+    exp:'Listings support up to 10 key features and each feature must be no longer than 200 characters to publish successfully to portals.'
+  },
+  {
+    section:'add_property', modes:['sales','lettings','both'],
+    q:'A property is being marketed for both sale and to let simultaneously. What happens to the description fields in Street?',
+    options:['A. Only one description is permitted and it applies to both listings','B. The lettings description is auto-generated from the sales description by Street AI','C. The second listing must be created as a separate property record','D. Two separate description areas appear — allowing distinct copy for each listing type','E. Descriptions are pulled from the portal and cannot be edited in Street','F. Both descriptions are shared and update together'],
+    answer:'D',
+    exp:'When marketing a property for both sale and let, two separate description areas are shown so agents can tailor each listing independently.'
+  },
+  {
+    section:'add_property', modes:['sales','lettings','both'],
+    q:'You add a Location Summary to a property in Street. On which portal will this field publish?',
+    options:['A. Rightmove only','B. Both Rightmove and Zoopla equally','C. OnTheMarket only','D. All connected portals equally','E. The Street public property page only — no portals','F. Zoopla only, as Rightmove accepts only one description field'],
+    answer:'F',
+    exp:'The Location Summary field publishes to Zoopla only. Rightmove accepts only a single description field (the Detailed Description).'
+  },
+  {
+    section:'add_property', modes:['sales','lettings','both'],
+    q:'Floor area dimensions entered in ft² in Street\'s property details — how do they display on portal listings?',
+    options:['A. In ft² exactly as entered','B. In hectares — Street converts all measurements to metric','C. In m² — Street stores measurements in metric and ft² is a visual display converter only','D. In both ft² and m² on all portals simultaneously','E. They do not publish to portals — only to the brochure PDF','F. In sq ft on Rightmove and m² on Zoopla'],
+    answer:'C',
+    exp:'Street stores measurements in metric. Entering a value in ft² is a convenience; the system converts and stores it as m², which is what publishes to portals.'
+  },
+
+  /* ─── INSTRUCTION (6 — sales + both) ─── */
+  {
+    section:'instruction', modes:['sales','both'],
+    q:'For a sales property, where do you go in Street to set up listing details — descriptions, key features and rooms — as part of the onboarding flow?',
+    options:['A. Edit > Edit Property > Property tab','B. Marketing > Portal Listings > New Listing','C. Settings > Branch Settings > Listing Templates','D. Dashboard > Properties > Edit Listing','E. Property page > Onboarding tab > Property Listing step > click View','F. Create > New Instruction > Complete Listing'],
+    answer:'E',
+    exp:'During onboarding you access listing details via the Onboarding tab on the property page, then the Property Listing step, then click View.'
+  },
+  {
+    section:'instruction', modes:['sales','both'],
+    q:'Where in Street do you navigate to make a property available for sale and publish it to portals?',
+    options:['A. Property page > Marketing > Publish to Portals','B. Dashboard > Properties > Set Live','C. Settings > Portal Feed > Submit Listing','D. Onboarding tab > Portal Submission > Go Live','E. Property page > Info > Listing Settings > Activate','F. Property page > Edit (top right) > Make Available for Sale'],
+    answer:'F',
+    exp:'You publish a property by clicking Edit in the top right of the property page, then selecting \'Make Available for Sale\'.'
+  },
+  {
+    section:'instruction', modes:['sales','both'],
+    q:'What does enabling "Low Profile Listing" on the portal listing details page do?',
+    options:['A. It highlights the listing as a price reduction on Rightmove','B. It marks the property as Under Offer without changing its status','C. It reduces the listing fee charged by the portal','D. It restricts viewing bookings to agent-invited applicants only','E. It publishes to portals but removes the asking price','F. It hides the property from portals — useful for pre-market matching without going live'],
+    answer:'F',
+    exp:'Low Profile Listing suppresses the property from portal display while keeping it active in Street for pre-market applicant matching.'
+  },
+  {
+    section:'instruction', modes:['sales','both'],
+    q:'The Occupancy Status on the portal listing details determines who receives automated viewing emails. If set to "Tenants", what happens?',
+    options:['A. Only the owner receives the viewing email','B. Only the assigned agent receives the viewing email','C. Both the tenants and the owner receive the viewing email','D. No automated viewing emails are sent — they must be triggered manually','E. Only the tenants receive the email; the owner is excluded','F. The viewing is held in provisional status until manually confirmed'],
+    answer:'C',
+    exp:'When Occupancy Status is set to Tenants, both the tenants and the owner receive automated viewing notification emails.'
+  },
+  {
+    section:'instruction', modes:['sales','both'],
+    q:'Why is Price on Application (POA) no longer a valid option when creating a listing in Street?',
+    options:['A. Street removed the feature during a 2023 system update','B. POA is only permitted on commercial properties, not residential','C. POA requires a portal subscription add-on that most branches do not hold','D. POA conflicted with Street\'s internal pricing engine','E. Rightmove bans POA but Zoopla still accepts it','F. NTSELAT banned the use of POA in 2022 and the portals no longer accept it'],
+    answer:'F',
+    exp:'The National Trading Standards Estate & Letting Agents Team (NTSELAT) prohibited POA in 2022 as part of material information requirements. Portals no longer accept it.'
+  },
+  {
+    section:'instruction', modes:['sales','both'],
+    q:'You want to track when a sole agency contract is nearing expiry in Street. Where do you configure this?',
+    options:['A. In the activity stream as a dated reminder note','B. In Branch Settings > Contract Expiry Tracker','C. In the property\'s Person record under owner details','D. In Reporting > Instruction Report > Sole Agency Filter','E. In the valuation record for that property','F. By ticking "Add Sole Agent Period" in the portal listing details and entering the end date — tracked from the Listing Performance table'],
+    answer:'F',
+    exp:'Enable "Add Sole Agent Period" in the portal listing details and enter the expiry date. The Listing Performance table then flags approaching expiry dates.'
+  },
+
+  /* ─── VIEWINGS (6 — all modes) ─── */
+  {
+    section:'viewings', modes:['sales','lettings','both'],
+    q:'What is the correct path to book a viewing in Street from the property page?',
+    options:['A. Info > Viewings > Add New','B. Dashboard > Diary > New Appointment','C. Marketing > Book Viewing','D. Contacts > Applicants > Schedule Viewing','E. Calendar > Add Event > Viewing','F. Property page > Create (top right) > Viewing'],
+    answer:'F',
+    exp:'Viewings are booked from the property page using the Create button in the top right, then selecting Viewing.'
+  },
+  {
+    section:'viewings', modes:['sales','lettings','both'],
+    q:'When would you save a viewing as "Provisional" rather than confirming it immediately?',
+    options:['A. When the viewing has been cancelled and needs rescheduling','B. When the applicant is on a waiting list for the property','C. When the property has not yet been published to portals','D. Provisional viewings are only used for valuation appointments','E. When you have selected a time but are not yet ready to formally confirm the appointment','F. When the property owner has not yet approved the viewing time'],
+    answer:'E',
+    exp:'Provisional status means a date and time has been selected but the appointment is not yet formally confirmed with all parties.'
+  },
+  {
+    section:'viewings', modes:['sales','lettings','both'],
+    q:'Street\'s Quick Book feature suggests viewing time slots automatically. What three factors does it consider?',
+    options:['A. The applicant\'s budget, the property asking price, and the agent\'s years of experience','B. The branch opening hours, the vendor\'s preferred times, and the day of the week','C. Existing diary appointments, agent availability, and travel time suitability','D. Portal enquiry volume, the applicant\'s distance from the property, and the weather','E. The applicant\'s credit score, the property size, and the agent\'s current caseload','F. Branch manager availability, vendor confirmation, and the online booking quota'],
+    answer:'C',
+    exp:'Quick Book considers the agent\'s existing diary appointments, their availability, and travel time suitability to suggest the most practical slots.'
+  },
+  {
+    section:'viewings', modes:['sales','lettings','both'],
+    q:'Where do you find property-specific viewing guidance notes that an agent should read before attending an appointment?',
+    options:['A. On the applicant\'s person page under Preferences','B. In Branch Settings > Viewing Notes','C. In the calendar appointment details popup','D. Emailed to the agent automatically 30 minutes before the appointment','E. On the viewing confirmation sent to the applicant','F. On the property page > Info > Viewing Guidance'],
+    answer:'F',
+    exp:'Viewing guidance notes are stored on the property page under Info > Viewing Guidance — the agent should review these before the appointment.'
+  },
+  {
+    section:'viewings', modes:['sales','lettings','both'],
+    q:'You want to disable online viewing bookings for one specific property. Where is this setting found?',
+    options:['A. Branch Settings > Online Bookings > Disable for Property','B. In the property\'s portal listing details, tick "Disable Online Booking"','C. Settings > Company Settings > Booking Controls','D. On the property page > Info > Settings tab','E. Within the onboard/edit property page > Viewing Preferences section — toggle off online booking for that property','F. It is not possible to disable online bookings for individual properties — only for the whole branch'],
+    answer:'E',
+    exp:'Online booking can be disabled per property from the onboard/edit property page in the Viewing Preferences section.'
+  },
+  {
+    section:'viewings', modes:['sales','lettings','both'],
+    q:'After a viewing takes place, what can an agent log directly from the viewing record?',
+    options:['A. An AML check on the applicant','B. A revised asking price recommendation to the vendor','C. A maintenance request on behalf of the applicant','D. Viewing feedback — capturing the applicant\'s comments and interest level, which can then be shared with the vendor or landlord','E. A new matching applicant search','F. A draft memo of sale'],
+    answer:'D',
+    exp:'From the viewing record an agent can log detailed viewing feedback — comments and interest level — and choose to share it with the vendor or landlord.'
+  },
+
+  /* ─── SALES OFFERS (7 — sales + both) ─── */
+  {
+    section:'sales_offers', modes:['sales','both'],
+    q:'Where do you navigate in Street to create a new sales offer?',
+    options:['A. Dashboard > Offers > New Offer','B. Contacts > Applicants > Make Offer','C. Info > Sales Offers > Add','D. Marketing > Offers > Create','E. Reports > Sales Pipeline > New Offer','F. Property page > Create > Sales Offer'],
+    answer:'F',
+    exp:'New sales offers are created from the property page using the Create button, then selecting Sales Offer.'
+  },
+  {
+    section:'sales_offers', modes:['sales','both'],
+    q:'When creating a sales offer, you search for the applicant but find no results. What should you do?',
+    options:['A. Cancel the offer — only existing applicants can make offers in Street','B. Enter the offer as "anonymous" and assign it to the applicant later','C. Add the applicant\'s details in the Additional Information box instead','D. Contact Street Support to manually link the offer','E. Use Global Search to find the person and auto-convert them','F. Click "Create Applicant" to register them first — if they don\'t exist at all, click "Create Person" first, then create the applicant'],
+    answer:'F',
+    exp:'If the applicant doesn\'t exist in Street at all, create the Person first, then create the Applicant record, then proceed with the offer.'
+  },
+  {
+    section:'sales_offers', modes:['sales','both'],
+    q:'Clicking "Create Offer" on a new sales offer — what does this action do immediately?',
+    options:['A. Sends an automated email to the vendor notifying them of the offer amount','B. Changes the property status to Under Offer on the portals','C. Triggers an AML check on the applicant automatically','D. Sends the offer details directly to the applicant\'s solicitor','E. Automatically marks the offer as relayed to the vendor','F. Creates the offer record in Street only — no automated communications are sent to the vendor or applicant at this stage'],
+    answer:'F',
+    exp:'Clicking Create Offer simply creates the record in Street. No emails are sent automatically to the vendor or applicant — communications are at the agent\'s discretion.'
+  },
+  {
+    section:'sales_offers', modes:['sales','both'],
+    q:'What step is required before you can accept a sales offer in Street?',
+    options:['A. Completing an AML check on the buyer','B. Uploading proof of funds documentation','C. Obtaining written confirmation from the vendor by email','D. Revising the offer to match or exceed the asking price','E. Sending the memo of sale draft to solicitors','F. Marking the offer as "Relayed to Vendor" — this unlocks the Accept Offer option'],
+    answer:'F',
+    exp:'You must first mark the offer as Relayed to Vendor. This step is required before the Accept Offer button becomes available.'
+  },
+  {
+    section:'sales_offers', modes:['sales','both'],
+    q:'When accepting an offer and marking the property as SSTC, what important limitation does Street flag?',
+    options:['A. SSTC automatically cancels all upcoming viewings without any notification being sent','B. SSTC removes the property from all portals immediately and cannot be reversed','C. SSTC status is only available once the memo of sale has been sent','D. Marking as SSTC auto-generates and sends the memo of sale','E. SSTC requires company admin approval before it can be set','F. SSTC cannot be reversed back to Under Offer within your account — you must contact Street Support via live chat'],
+    answer:'F',
+    exp:'Street warns that SSTC status cannot be undone in-platform. If reversal is needed (e.g. a sale falls through), you must contact Street Support via live chat.'
+  },
+  {
+    section:'sales_offers', modes:['sales','both'],
+    q:'The "Additional Information" box when creating a sales offer — who can see what is entered here?',
+    options:['A. Internal agents only — it is never visible externally','B. The applicant\'s solicitor — it is shared automatically in the memo','C. Branch admins and above only via the reporting module','D. The applicant — it appears in their viewing history in the consumer app','E. It is stored in a compliance file and visible to no party','F. The vendor — it can appear in their Street consumer account, so care should be taken over the wording'],
+    answer:'F',
+    exp:'The Additional Information field can be visible to the vendor through their Street consumer app, so agents should take care not to include anything inappropriate.'
+  },
+  {
+    section:'sales_offers', modes:['sales','both'],
+    q:'Where in Street can you view a full list of all offers made on a specific property, including their current statuses?',
+    options:['A. Dashboard > Offers tab > filter by property','B. Reporting > Sales Offers','C. The property\'s activity stream — offers appear as logged events','D. Marketing > Offer History','E. Contacts > Applicants > Offer History','F. Property page > Info > Sales Offers'],
+    answer:'F',
+    exp:'All offers for a property, along with their statuses, are listed under the property page > Info > Sales Offers.'
+  },
+
+  /* ─── LETTINGS APP (7 — lettings + both) ─── */
+  {
+    section:'lettings_app', modes:['lettings','both'],
+    q:'Once a lettings offer is accepted in Street, what is automatically created?',
+    options:['A. The full tenancy record and a rent schedule','B. An AML check request sent directly to the applicant','C. A draft tenancy agreement document for review','D. A holding deposit invoice sent to the applicant','E. A Let Agreed listing update pushed to the portals','F. A Lettings Application — a granular checklist of key tasks to complete before move-in'],
+    answer:'F',
+    exp:'Accepting a lettings offer automatically generates a Lettings Application — a step-by-step checklist guiding the agent through all pre-tenancy tasks.'
+  },
+  {
+    section:'lettings_app', modes:['lettings','both'],
+    q:'Which two tiles in the Lettings Application are mandatory before the "Create Tenancy" button appears?',
+    options:['A. Referencing and Deposit','B. Inventory and Move In','C. Right to Rent and Tenancy Agreement','D. Safety Certificates and Holding Deposit','E. Charges and Utilities','F. Deposit and Referencing'],
+    answer:'C',
+    exp:'The Right to Rent tile and the Tenancy Agreement tile must both be completed before Street reveals the Create Tenancy button.'
+  },
+  {
+    section:'lettings_app', modes:['lettings','both'],
+    q:'A lettings application has been cancelled after an applicant withdrew. What must the agent do to restart the process with a new applicant?',
+    options:['A. Click the "Reinstate" button on the cancelled application','B. Street Support can reopen a cancelled application within 7 days','C. Duplicate the cancelled application and reassign it to the new applicant','D. Mark the cancelled application as "Ongoing" from the manage menu','E. Reopen the application from the Applications tab by changing the status field','F. Create a brand new lettings offer and accept it — cancelled applications cannot be reinstated'],
+    answer:'F',
+    exp:'Cancelled lettings applications cannot be reinstated. A brand new lettings offer must be created and accepted to generate a fresh application.'
+  },
+  {
+    section:'lettings_app', modes:['lettings','both'],
+    q:'At what point in the lettings application should an agent mark the property as Let Agreed?',
+    options:['A. As soon as the offer is first accepted in Street','B. Only once the tenancy agreement has been signed by all parties','C. When the Create Tenancy button is clicked for the first time','D. Only a branch admin can set Let Agreed status','E. When the full application checklist is 100% complete','F. Typically after the holding deposit has been received — updating the status in both Street and on the portals'],
+    answer:'F',
+    exp:'Let Agreed is typically set after the holding deposit has been received. This updates the property status in Street and on the connected portals.'
+  },
+  {
+    section:'lettings_app', modes:['lettings','both'],
+    q:'After creating the tenancy, what final step should an agent complete — and why is it important?',
+    options:['A. Archive all AML check documents under the tenancy record','B. Send the tenant a manual move-in confirmation from the activity stream','C. Delete the original lettings offer to keep records tidy','D. Email the portal team to request the listing is removed','E. Mark the property as archived in branch settings','F. Complete the application via the manage button and archive the lettings listing — this removes the listing-tenancy link so status shows correctly and a fresh listing can be created for re-marketing'],
+    answer:'F',
+    exp:'Completing the application and archiving the listing removes the listing-tenancy link, ensuring the property status displays correctly and a clean listing can be created if re-marketed.'
+  },
+  {
+    section:'lettings_app', modes:['lettings','both'],
+    q:'If an agent has trouble completing the Tenancy Agreement tile, what is the most common cause?',
+    options:['A. The applicant\'s referencing has not been marked as passed','B. The holding deposit tile has not been completed first','C. The management fee has not been set, the deposit scheme is missing, or the tenancy dates overlap with an existing tenancy','D. The property does not have a valid EPC certificate uploaded','E. The right to rent check has not been completed for all applicants','F. The tenancy agreement template has not been published in branch settings'],
+    answer:'C',
+    exp:'The three most common causes of Tenancy Agreement tile issues are: no management fee set, no deposit scheme selected, or dates clashing with an existing tenancy on that property.'
+  },
+  {
+    section:'lettings_app', modes:['lettings','both'],
+    q:'When an applicant\'s referencing returns as "Passed with Guarantor", what must the agent do next in Street?',
+    options:['A. Reject the application — a guarantor is not permitted on standard lettings applications','B. Mark the referencing as failed and restart the referencing process','C. Email the landlord directly to request their approval for a guarantor tenancy','D. Contact the referencing provider to resubmit without a guarantor requirement','E. Skip the referencing tile by using the skip checkbox','F. Add the guarantor as a person in the system via the referencing tile before proceeding'],
+    answer:'F',
+    exp:'When referencing passes with a guarantor, the guarantor must be added as a Person record in Street through the referencing tile so the tenancy can proceed correctly.'
+  },
+
+  /* ─── APPLICANTS (6 — all modes) ─── */
+  {
+    section:'applicants', modes:['sales','lettings','both'],
+    q:'You want to run an applicant match for a property not yet live on the portals. What two settings must first be active on the listing?',
+    options:['A. "Coming Soon" and "Sole Agent"','B. "Price on Application" and "Coming Soon"','C. "Featured Listing" and "Low Profile"','D. "Student Rental" and "Do not publish to website"','E. No special settings are needed for pre-market matching','F. "Low Profile" and "Do not publish to website"'],
+    answer:'F',
+    exp:'For pre-market matching, the listing should be set to Low Profile and "Do not publish to website" — this keeps it off the portals while still allowing matching to run.'
+  },
+  {
+    section:'applicants', modes:['sales','lettings','both'],
+    q:'Where in Street do you navigate to run a property-to-applicant match?',
+    options:['A. Dashboard > Matching > New Match','B. Contacts > Applicants > Find Properties','C. Reports > Matching > Run Match','D. Property page > Info > Applicant Matching','E. Settings > Matching Tools > Start Match','F. Property page > Marketing dropdown > Sales Applicant Matching > New Applicant Match'],
+    answer:'F',
+    exp:'Applicant matching is run from the property page via the Marketing dropdown > Sales (or Lettings) Applicant Matching > New Applicant Match.'
+  },
+  {
+    section:'applicants', modes:['sales','lettings','both'],
+    q:'After running an applicant match, how can agents use the results to prioritise follow-up calls effectively?',
+    options:['A. By filtering applicants by their credit score','B. By checking which applicants have an active mortgage in principle','C. By sorting applicants by their distance from the property','D. By filtering by which applicants have previously made offers elsewhere','E. By reviewing which applicants have a viewing booked on a similar property','F. By reviewing each applicant\'s engagement rate — showing how many times they opened and clicked the property match link'],
+    answer:'F',
+    exp:'The match results show each applicant\'s engagement rate — open and click counts on the match email — which helps agents identify the most interested prospects to call first.'
+  },
+  {
+    section:'applicants', modes:['sales','lettings','both'],
+    q:'You want to alert applicants about a new property by phone before sending any email. How do you achieve this in Street?',
+    options:['A. Send the match email first then call immediately after','B. Add each applicant to the activity stream as a private note','C. Export the applicant list to CSV and use an external calling tool','D. Use the bulk SMS feature to alert applicants instead','E. This is not possible — the match email must always be sent first','F. Run the match but untick "Send a Property Match email to applicants" — this generates a call list without sending any communication'],
+    answer:'F',
+    exp:'Unticking the email option in the match wizard generates the matched applicant list without sending any emails, giving the agent a call list to work through manually.'
+  },
+  {
+    section:'applicants', modes:['sales','lettings','both'],
+    q:'When adding a new sales applicant, which key piece of financial information should always be captured?',
+    options:['A. Their annual salary and employer name','B. Their National Insurance number for AML purposes','C. Their credit score from a reference provider','D. Their current outstanding mortgage balance','E. Their solicitor\'s estimated conveyancing fee','F. Their financial position — for example cash buyer, mortgage in principle, or mortgage required'],
+    answer:'F',
+    exp:'Capturing financial position (cash buyer / MIP / mortgage required) is essential for qualifying applicants and providing meaningful offer information to vendors.'
+  },
+  {
+    section:'applicants', modes:['sales','lettings','both'],
+    q:'If automated property match emails are enabled in branch settings, when is the first match email sent to a newly registered applicant?',
+    options:['A. 24 hours after the applicant is added — to allow for data quality checks','B. Only when an agent manually triggers it from the marketing menu','C. At the start of the next business day','D. When the applicant confirms their email via a verification link','E. When their first viewing is booked on a matching property','F. Automatically as soon as the applicant is added — with all currently matching properties'],
+    answer:'F',
+    exp:'With automated matching enabled, a match email fires immediately when an applicant is created, showing all properties that currently match their criteria.'
+  },
+
+  /* ─── VALUATIONS (6 — all modes) ─── */
+  {
+    section:'valuations', modes:['sales','lettings','both'],
+    q:'Where in Street is the full list of all valuations found, along with their current statuses?',
+    options:['A. Dashboard > Properties > Valuations filter','B. Settings > Branch Settings > Valuation History','C. Reports > Valuation Report','D. Marketing > Valuation Pipeline','E. Create > Valuation > View All','F. The Valuations tab in the left side navigation panel'],
+    answer:'F',
+    exp:'All valuations are accessible from the Valuations tab in the left-hand side navigation panel of Street.'
+  },
+  {
+    section:'valuations', modes:['sales','lettings','both'],
+    q:'Before sending a valuation report to a client, two things must be configured in the agent\'s personal settings. What are they?',
+    options:['A. API token and portal subscription details','B. Notification preferences and viewing availability hours','C. Email signature and company disclaimer text','D. AML check credentials and company licence number','E. Branch disclaimer text and brand colour scheme','F. Biography and profile picture — these display on the valuation report sent to clients'],
+    answer:'F',
+    exp:'The biography and profile picture set in the agent\'s personal profile are displayed on the valuation report, so both must be completed before sending.'
+  },
+  {
+    section:'valuations', modes:['sales','lettings','both'],
+    q:'How do you filter the Valuations tab in Street to show only lettings valuations?',
+    options:['A. Use the branch filter and select the "Lettings" branch','B. Use the assignee filter and select the lettings team','C. Apply the service level filter and choose "Let Only"','D. Select "Lettings" from the property type filter','E. The Valuations tab cannot be filtered by type','F. Change the dropdown filter next to the header to "Lettings only"'],
+    answer:'F',
+    exp:'A dropdown filter next to the Valuations tab header lets you switch between all types, sales-only, and lettings-only views.'
+  },
+  {
+    section:'valuations', modes:['sales','lettings','both'],
+    q:'A valuation report has been sent to the owner and you are waiting for their response. Under which tab will it appear in Street\'s valuation list?',
+    options:['A. Active','B. Pending','C. Sent','D. In Progress','E. Outstanding','F. Awaiting Response'],
+    answer:'F',
+    exp:'Once the report is sent, the valuation moves to the "Awaiting Response" tab, where it stays until a win/loss outcome is recorded.'
+  },
+  {
+    section:'valuations', modes:['sales','lettings','both'],
+    q:'A valuation appointment will take longer than the branch default duration. How does an agent override this for just that one property?',
+    options:['A. Temporarily change the branch default appointment time','B. Book two back-to-back valuation appointments in the diary','C. Ask a branch admin to change the setting for that specific appointment','D. Add a note to the activity stream and adjust the diary manually','E. It is not possible to override the branch default for individual properties','F. Enter a custom valuation appointment duration on the property details page — this overrides the branch setting for that property only'],
+    answer:'F',
+    exp:'A custom appointment duration can be set per property on its details page, which overrides the branch default for that valuation only.'
+  },
+  {
+    section:'valuations', modes:['sales','lettings','both'],
+    q:'When a valuation results in winning the instruction, how should this be formally recorded in Street?',
+    options:['A. Change the property status to "Instructed" from the property page','B. Add a "Won" note to the activity stream','C. Archive the valuation and create a new instruction record manually','D. Mark it as "Awaiting Response" until the owner signs the agency agreement','E. Send the valuation report again with "Instructed" selected as the result type','F. Update the valuation record by accepting the instruction — moving it to the Won outcome tab'],
+    answer:'F',
+    exp:'The instruction is accepted directly from the valuation record, which moves it to the Won outcome tab and keeps the instruction history linked.'
+  },
+
+  /* ─── DAILY TASKS (5 — all modes) ─── */
+  {
+    section:'daily', modes:['sales','lettings','both'],
+    q:'What is the fastest way to navigate to any property, person, or record from any screen in Street?',
+    options:['A. Go to Dashboard > Properties and use the search filter','B. Use the Reports tab and search by name','C. Go to Contacts and use the advanced filter','D. Use the browser\'s CTRL+F shortcut on the current page','E. Navigate via Settings > Search','F. Use the Global Search Bar — accessible from any screen — to find any record instantly'],
+    answer:'F',
+    exp:'The Global Search Bar is available from every screen in Street and is the quickest way to jump directly to any property, person or record.'
+  },
+  {
+    section:'daily', modes:['sales','lettings','both'],
+    q:'You want to send an email to a vendor directly from their person record in Street. Where do you do this?',
+    options:['A. Settings > Email > Compose New','B. Marketing > Email Templates > Send','C. Only from the property page — emails cannot be sent from a person record','D. From the Reports > Sent Emails section','E. By clicking "Contact" in the top-right corner of any page','F. From the activity stream on the person\'s page — using the email option within the activity stream'],
+    answer:'F',
+    exp:'Emails can be sent to a contact directly from the activity stream on their person page by selecting the email option within the stream.'
+  },
+  {
+    section:'daily', modes:['sales','lettings','both'],
+    q:'Internal notes added to a property or person\'s activity stream — are these visible to clients in the Street consumer app?',
+    options:['A. Yes — all activity stream notes are automatically visible to the relevant client','B. Yes — but only notes added by branch admins','C. Yes — vendors can see notes but tenants cannot','D. Only notes tagged "Client Visible" are shared externally','E. Notes become visible after 48 hours unless manually set to private','F. No — the activity stream is internal to the agency only and does not appear in the client-facing consumer app'],
+    answer:'F',
+    exp:'The activity stream is entirely internal to the agency. No notes, regardless of content, are visible to clients in the Street consumer app.'
+  },
+  {
+    section:'daily', modes:['sales','lettings','both'],
+    q:'Where in Street can an agent see all their outstanding actions in one place — unresponded enquiries, unconfirmed viewings, and upcoming tasks?',
+    options:['A. Reports > Outstanding Actions','B. Branch Settings > Tasks Dashboard','C. The calendar view filtered to "today"','D. The Notifications panel in the top-right corner','E. The Dashboard > Pipeline View','F. The task management dashboard — centralising all outstanding items so nothing gets missed'],
+    answer:'F',
+    exp:'The task management dashboard brings together all outstanding actions — enquiries, unconfirmed viewings, tasks and more — into a single consolidated view.'
+  },
+  {
+    section:'daily', modes:['sales','lettings','both'],
+    q:'When does a completed applicant match appear in the property\'s activity stream, and what information does it record?',
+    options:['A. In the applicant\'s person record only — showing the properties matched to them','B. In the Reporting > Match History table — showing the number of matches only','C. It appears 24 hours after the match is run, pending email delivery confirmation','D. Only in the portal dashboard — not in Street directly','E. It is visible to branch admins in the audit log only','F. It appears immediately in the property page\'s activity stream — showing which user ran the match and at what time'],
+    answer:'F',
+    exp:'Applicant matches are logged instantly to the property\'s activity stream, recording which user ran the match and the exact time — useful for team accountability.'
+  }
+];
+
+/* ══════════════════════════════════════════════════
+   UTILS
+══════════════════════════════════════════════════ */
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7) }
+function initials(n){ return n.trim().split(' ').map(p=>p[0]||'').join('').toUpperCase().slice(0,2)||'?' }
+function fmtDate(iso){ if(!iso)return'—'; const d=new Date(iso); return d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})+' '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}) }
+function fmtDur(s){ if(!s)return'—'; const m=Math.floor(s/60),sc=s%60; return m>0?`${m}m ${sc}s`:`${sc}s` }
+function hdrClass(m){ return MODE_HDR[m]||'hdr-both' }
+// Fisher-Yates shuffle — returns new array, never mutates original
+function shuffleArr(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]] } return a }
+// Returns copy of question with options in random order, answer letter updated accordingly
+function shuffleOptions(q){
+  const correctText=q.options.find(o=>o.startsWith(q.answer+'.'));
+  const shuffled=shuffleArr(q.options);
+  const relabelled=shuffled.map((opt,i)=>LETTERS[i]+'. '+opt.substring(3));
+  const newAnswerIdx=shuffled.findIndex(o=>o===correctText);
+  return {...q, options:relabelled, answer:LETTERS[newAnswerIdx]};
+}
+function scoreColor(p){ return p>=90?'#22c55e':p>=70?'#f59e0b':'#ef4444' }
+function validEmail(e){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e) }
+
+/* ══════════════════════════════════════════════════
+   SCREEN MANAGEMENT
+══════════════════════════════════════════════════ */
+// Each screen has a specific display type — set explicitly to avoid CSS inheritance issues
+const SCREEN_DISPLAY = {
+  'screen-landing':       'flex',
+  'screen-login':         'flex',
+  'screen-mode':          'block',
+  'screen-test':          'block',
+  'screen-results':       'block',
+  'screen-admin-login':   'flex',
+  'screen-admin':         'block',
+};
+function showScreen(id){
+  Object.keys(SCREEN_DISPLAY).forEach(s=>{
+    const el=document.getElementById(s);
+    if(!el) return;
+    if(s===id){
+      el.style.display = SCREEN_DISPLAY[s];
+      el.classList.add('active');
+    } else {
+      el.style.display = 'none';
+      el.classList.remove('active');
+    }
+  });
+  window.scrollTo(0,0);
+}
+function showLanding(){ showScreen('screen-landing') }
+async function showLogin(){ await prepLogin(); showScreen('screen-login') }
+
+/* ══════════════════════════════════════════════════
+   STORAGE HELPERS — safe fallback if storage unavailable
+══════════════════════════════════════════════════ */
+async function loadProfile(){
+  try{
+    if(!window.storage) return null;
+    const r=await window.storage.get(PROFILE_KEY,false);
+    return r?JSON.parse(r.value):null;
+  }catch(e){return null}
+}
+async function saveProfile(p){
+  try{ if(window.storage) await window.storage.set(PROFILE_KEY,JSON.stringify(p),false) }catch(e){}
+}
+async function loadResults(){
+  try{
+    if(!window.storage) return [];
+    const r=await window.storage.get(RESULTS_KEY,true);
+    return r?JSON.parse(r.value):[];
+  }catch(e){return[]}
+}
+async function saveResults(arr){
+  try{
+    if(!window.storage) return false;
+    await window.storage.set(RESULTS_KEY,JSON.stringify(arr),true);
+    return true;
+  }catch(e){return false}
+}
+async function appendResult(result){
+  const arr=await loadResults();
+  arr.push(result);
+  return await saveResults(arr);
+}
+
+/* ══════════════════════════════════════════════════
+   LOGIN — INLINE VALIDATION
+══════════════════════════════════════════════════ */
+
+// Real-time field validators called on every keystroke and blur
+function validateName(input){
+  const val=input.value.trim();
+  const hint=document.getElementById('name-hint');
+  const status=document.getElementById('name-status');
+  if(!val){ setField(input,hint,status,'','',''); updateLoginBtn(); return }
+  if(val.length<2){ setField(input,hint,status,'err','Please enter your full name','✗'); updateLoginBtn(); return }
+  if(!/\s/.test(val)){ setField(input,hint,status,'err','Please include your first and last name','✗'); updateLoginBtn(); return }
+  setField(input,hint,status,'ok','Looks good!','✓');
+  updateLoginBtn();
+}
+
+function validateEmailField(input,hintId,statusId){
+  const val=input.value.trim();
+  const hint=document.getElementById(hintId);
+  const status=document.getElementById(statusId);
+  if(!val){ setField(input,hint,status,'','',''); updateLoginBtn(); return }
+  if(!val.includes('@')){ setField(input,hint,status,'err','Missing "@" — e.g. sarah@agency.co.uk','✗'); updateLoginBtn(); return }
+  const parts=val.split('@');
+  if(parts.length!==2||!parts[1]){ setField(input,hint,status,'err','Missing domain after "@"','✗'); updateLoginBtn(); return }
+  if(!parts[1].includes('.')){ setField(input,hint,status,'err','Domain looks incomplete — e.g. agency.co.uk','✗'); updateLoginBtn(); return }
+  if(!validEmail(val)){ setField(input,hint,status,'err','Please enter a valid work email address','✗'); updateLoginBtn(); return }
+  setField(input,hint,status,'ok','Valid email','✓');
+  updateLoginBtn();
+}
+
+function setField(input,hintEl,statusEl,type,msg,icon){
+  input.classList.remove('field-error','field-ok');
+  if(hintEl){ hintEl.textContent=msg; hintEl.className='field-hint'+(type?' '+type:''); }
+  if(statusEl){ statusEl.textContent=icon; statusEl.style.color=type==='ok'?'#16a34a':type==='err'?'#c0392b':''; }
+  if(type==='err') input.classList.add('field-error');
+  if(type==='ok')  input.classList.add('field-ok');
+}
+
+function updateLoginBtn(){
+  const btn=document.getElementById('login-btn');
+  if(!btn) return;
+  const lf=document.getElementById('login-fields');
+  const isNewUser=lf&&lf.style.display!=='none';
+  if(!isNewUser){
+    const alt=(document.getElementById('inp-email-alt')||{}).value||'';
+    btn.disabled=alt.length>0&&!validEmail(alt.trim());
+    return;
+  }
+  const name=(document.getElementById('inp-name')||{}).value||'';
+  const email=(document.getElementById('inp-email')||{}).value||'';
+  const nameOk=name.trim().length>=2&&/\s/.test(name.trim());
+  const emailOk=validEmail(email.trim());
+  btn.disabled=!(nameOk&&emailOk);
+}
+
+function showLoginError(msg){
+  const err=document.getElementById('login-error');
+  const txt=document.getElementById('login-error-text');
+  if(txt) txt.textContent=msg; else if(err) err.textContent=msg;
+  if(err){ err.classList.add('show'); err.style.animation='none'; void err.offsetHeight; err.style.animation=''; }
+}
+function clearLoginError(){
+  const err=document.getElementById('login-error');
+  if(err) err.classList.remove('show');
+}
+
+async function prepLogin(){
+  const profile=await loadProfile();
+  const wbb=document.getElementById('welcome-back-box');
+  const lf=document.getElementById('login-fields');
+  const lr=document.getElementById('login-returning');
+  clearLoginError();
+  ['inp-name','inp-email','inp-email-alt'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){ el.classList.remove('field-error','field-ok'); el.value=''; }
+  });
+  ['name-hint','email-hint','email-alt-hint'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=''; });
+  ['name-status','email-status','email-alt-status'].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=''; });
+  if(profile){
+    wbb.style.display='flex';
+    document.getElementById('wb-avatar').textContent=initials(profile.name);
+    document.getElementById('wb-name').textContent=profile.name;
+    document.getElementById('wb-email').textContent=profile.email;
+    lf.style.display='none';
+    lr.style.display='block';
+    document.getElementById('login-btn').textContent='Continue as '+profile.name.split(' ')[0]+' \u2192';
+    document.getElementById('login-btn').disabled=false;
+    agent=profile;
+  } else {
+    wbb.style.display='none';
+    lf.style.display='block';
+    lr.style.display='none';
+    document.getElementById('login-btn').textContent='Start Certification \u2192';
+    document.getElementById('login-btn').disabled=true;
+    agent=null;
+  }
+}
+
+async function handleLogin(){
+  clearLoginError();
+  const profile=await loadProfile();
+  const lf=document.getElementById('login-fields');
+  const isNewUser=lf&&lf.style.display!=='none';
+  if(profile&&!isNewUser){
+    const alt=document.getElementById('inp-email-alt').value.trim();
+    if(alt){
+      if(!validEmail(alt)){ showLoginError('Please enter a valid work email address.'); return }
+      const guess=alt.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+      agent={name:guess,email:alt};
+    } else { agent=profile; }
+  } else {
+    const name=document.getElementById('inp-name').value.trim();
+    const email=document.getElementById('inp-email').value.trim();
+    if(!name||name.length<2){ showLoginError('Please enter your full name (at least 2 characters).'); return }
+    if(!/\s/.test(name)){ showLoginError('Please enter both your first and last name.'); return }
+    if(!email||!email.includes('@')){ showLoginError('Please enter a valid work email — missing "@" symbol.'); return }
+    if(!validEmail(email)){ showLoginError('Please enter a valid work email address, e.g. sarah@agency.co.uk'); return }
+    agent={name,email};
+  }
+  await saveProfile({...agent,lastLogin:new Date().toISOString()});
+  document.getElementById('mode-avatar').textContent=initials(agent.name);
+  document.getElementById('mode-agent-name').textContent=agent.name;
+  showScreen('screen-mode');
+}
+
+/* ══════════════════════════════════════════════════
+   MODE + TEST ENGINE
+══════════════════════════════════════════════════ */
+function selectMode(mode){
+  testMode=mode;
+  // Shuffle each question's options into a random order on every attempt
+  activeQs=ALL_QUESTIONS.filter(q=>q.modes.includes(mode)).map(shuffleOptions);
+  activeSecs=ALL_SECTIONS.filter(s=>s.modes.includes(mode));
+  answers=new Array(activeQs.length).fill(null);
+  submitted=new Array(activeQs.length).fill(false);
+  current=0;
+  startTime=new Date().toISOString();
+  const hdr=document.getElementById('test-header');
+  hdr.className='test-header '+hdrClass(mode);
+  document.getElementById('mode-badge-el').textContent=MODE_LABELS[mode];
+  showScreen('screen-test');
+  renderQ(0);
+}
+
+function renderQ(idx){
+  current=idx;
+  const q=activeQs[idx];
+  const sec=activeSecs.find(s=>s.id===q.section);
+  const hc=hdrClass(testMode);
+  const pct=Math.round((idx/activeQs.length)*100);
+  document.getElementById('hdr-section').textContent=sec?sec.label:'';
+  document.getElementById('prog-fill').style.width=pct+'%';
+  document.getElementById('prog-label').textContent=`Q ${idx+1} of ${activeQs.length}`;
+  const ans=submitted.filter(Boolean).length;
+  const corr=answers.filter((a,i)=>submitted[i]&&a===activeQs[i].answer).length;
+  document.getElementById('live-score').textContent=ans>0?`${corr}/${ans}`:'—';
+  const showBanner=idx===0||(idx>0&&activeQs[idx-1].section!==q.section);
+  const container=document.getElementById('q-container');
+  container.innerHTML='';
+  if(showBanner&&sec){
+    const b=document.createElement('div');
+    b.className=`section-banner ${hc}`;
+    b.innerHTML=`<div class="sec-icon">${sec.icon}</div><div class="sec-info"><h3>Section</h3><p>${sec.label}</p></div>`;
+    container.appendChild(b);
+  }
+  const area=document.createElement('div');area.className='q-area';
+  const card=document.createElement('div');card.className='q-card';
+  card.innerHTML=`
+    <div class="q-meta"><div class="q-num ${hc}">${idx+1}</div><div class="q-tag">${sec?sec.label:''}</div></div>
+    <div class="q-text">${q.q}</div>
+    <div class="opts-grid" id="opts-${idx}"></div>
+    <div class="feedback" id="fb-${idx}"></div>
+    <div class="nav-row">
+      <button class="btn-nav ${hc}" onclick="renderQ(${idx-1})" ${idx===0?'disabled':''}>← Back</button>
+      <button class="btn-nav primary ${hc}" id="next-btn-${idx}" onclick="nextAction(${idx})">
+        ${submitted[idx]?(idx===activeQs.length-1?'View Results ✓':'Next →'):'Confirm Answer'}
+      </button>
+    </div>`;
+  area.appendChild(card);
+  container.appendChild(area);
+  const optsEl=card.querySelector(`#opts-${idx}`);
+  q.options.forEach((opt,oi)=>{
+    const letter=LETTERS[oi];
+    const btn=document.createElement('button');
+    btn.className=`opt-btn ${hc}`;
+    btn.disabled=submitted[idx];
+    btn.dataset.letter=letter;
+    const label=opt.substring(3); // remove "A. " prefix
+    btn.innerHTML=`<span class="opt-letter">${letter}</span><span>${label}</span>`;
+    if(submitted[idx]){
+      if(letter===q.answer)btn.classList.add('correct');
+      if(answers[idx]===letter&&letter!==q.answer)btn.classList.add('wrong');
+    } else if(answers[idx]===letter){ btn.classList.add('selected'); }
+    btn.addEventListener('click',()=>pickOpt(idx,letter));
+    optsEl.appendChild(btn);
+  });
+  if(submitted[idx])showFb(idx);
+}
+
+function pickOpt(idx,letter){
+  if(submitted[idx])return;
+  answers[idx]=letter;
+  document.querySelectorAll(`#opts-${idx} .opt-btn`).forEach(b=>b.classList.toggle('selected',b.dataset.letter===letter));
+}
+
+function nextAction(idx){
+  if(!submitted[idx]){
+    if(!answers[idx]){alert('Please select an answer before continuing.');return}
+    submitted[idx]=true;
+    const q=activeQs[idx];
+    document.querySelectorAll(`#opts-${idx} .opt-btn`).forEach(b=>{
+      b.disabled=true;
+      const l=b.dataset.letter;
+      b.classList.remove('selected');
+      if(l===q.answer)b.classList.add('correct');
+      if(answers[idx]===l&&l!==q.answer)b.classList.add('wrong');
+    });
+    showFb(idx);
+    const btn=document.getElementById(`next-btn-${idx}`);
+    if(btn)btn.textContent=idx===activeQs.length-1?'View Results ✓':'Next →';
+    const ans=submitted.filter(Boolean).length;
+    const corr=answers.filter((a,i)=>submitted[i]&&a===activeQs[i].answer).length;
+    document.getElementById('live-score').textContent=`${corr}/${ans}`;
+  } else {
+    idx===activeQs.length-1?finishTest():renderQ(idx+1);
+  }
+}
+
+function showFb(idx){
+  const q=activeQs[idx];
+  const fb=document.getElementById(`fb-${idx}`);
+  if(!fb)return;
+  const ok=answers[idx]===q.answer;
+  fb.className='feedback show '+(ok?'ok':'err');
+  const co=q.options.find(o=>o.startsWith(q.answer+'.'));
+  const exp=q.exp||'';
+  fb.innerHTML=ok
+    ?`<span>✓</span>&nbsp;<strong>Correct!</strong>${exp?' — '+exp:''}`
+    :`<span>✗</span>&nbsp;<strong>Incorrect.</strong> Correct answer: <strong>${co||q.answer}</strong>${exp?'. '+exp:''}`;
+}
+
+/* ══════════════════════════════════════════════════
+   FINISH + RESULTS
+══════════════════════════════════════════════════ */
+async function finishTest(){
+  const endTime=new Date().toISOString();
+  const total=activeQs.length;
+  const correct=answers.filter((a,i)=>a===activeQs[i].answer).length;
+  const pct=Math.round((correct/total)*100);
+  const passed=pct>=90;
+  const hc=hdrClass(testMode);
+  const durationSecs=Math.round((new Date(endTime)-new Date(startTime))/1000);
+  const secBreakdown={};
+  activeSecs.forEach(s=>{secBreakdown[s.id]={label:s.label,icon:s.icon,correct:0,total:0}});
+  activeQs.forEach((q,i)=>{
+    if(secBreakdown[q.section]){
+      secBreakdown[q.section].total++;
+      if(answers[i]===q.answer)secBreakdown[q.section].correct++;
+    }
+  });
+  Object.values(secBreakdown).forEach(s=>s.pct=s.total>0?Math.round((s.correct/s.total)*100):0);
+  const result={
+    id:uid(),agentName:agent.name,agentEmail:agent.email,
+    track:testMode,trackLabel:MODE_LABELS[testMode],
+    startTime,endTime,durationSecs,
+    score:correct,total,pct,passed,sectionBreakdown:secBreakdown
+  };
+  showScreen('screen-results');
+  buildResultsUI(result,hc,passed,pct,correct,total,secBreakdown);
+  const saved=await appendResult(result);
+  const ss=document.getElementById('save-status');
+  ss.textContent=saved?'✓ Results saved to manager dashboard':'⚠ Could not save results automatically';
+  if(saved)ss.className='save-status saved';
+}
+
+function buildResultsUI(result,hc,passed,pct,correct,total,secBreakdown){
+  const certDate=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('res-hero').className=`res-hero ${hc}`;
+  document.getElementById('res-track-label').textContent=result.trackLabel+' — Certification Results';
+  document.getElementById('res-agent-name').textContent=result.agentName+' · '+result.agentEmail;
+  document.getElementById('res-score').innerHTML=`${pct}<span class="score-suffix">%</span>`;
+  document.getElementById('res-verdict').textContent=passed?'🎉 Congratulations — You Passed!':'Not Quite There — Keep Practising';
+  document.getElementById('res-sub').textContent=passed
+    ?'You\'ve demonstrated strong working knowledge of Street. Your manager has been notified.'
+    :`A score of 90%+ (${Math.ceil(total*0.9)}/${total} correct) is required. Review the flagged sections and retry.`;
+  document.getElementById('res-badge').innerHTML=passed
+    ?'<div class="cert-badge">✦ Certified — 90% Sign-Off Achieved</div>'
+    :'<div class="fail-badge">✗ Not Yet Certified — Retry Required</div>';
+  const secNames=activeSecs.map(s=>s.label);
+  const lastSec=secNames.pop();
+  const secList=(secNames.length>0?secNames.join(', ')+' and ':'')+lastSec;
+  let html=`<div class="tally">
+    <div class="tally-item g"><div class="tally-n">${correct}</div><div class="tally-l">Correct</div></div>
+    <div class="tally-item r"><div class="tally-n">${total-correct}</div><div class="tally-l">Incorrect</div></div>
+    <div class="tally-item o"><div class="tally-n">${pct}%</div><div class="tally-l">Score</div></div>
+  </div>`;
+  if(passed){
+    html+=`<div class="cert-block ${hc}"><h2>🏆 Certification Statement</h2>
+      <p class="cert-text">This is to confirm that <strong>${result.agentName}</strong> (${result.agentEmail}) has successfully passed the
+      <strong>Street.co.uk Agent Certification Test — ${result.trackLabel}</strong> with a score of
+      <strong>${pct}%</strong> (${correct} of ${total} correct) on <strong>${certDate}</strong>.<br><br>
+      Having met the required pass mark of <strong>90%</strong>, this agent is confirmed as <strong>90% signed off</strong>
+      on Street.co.uk for <strong>${result.trackLabel}</strong> operations. Sections covered: ${secList}.<br><br>
+      <em style="opacity:.7">Street.co.uk Training Programme · ${result.trackLabel} Track · Certified ${certDate}</em></p></div>`;
+  }
+  html+=`<div class="sec-breakdown"><h3>Section Breakdown</h3>`;
+  activeSecs.forEach(s=>{
+    const st=secBreakdown[s.id]||{correct:0,total:0,pct:0};
+    const col=scoreColor(st.pct);
+    html+=`<div class="sec-row">
+      <div class="sec-name">${s.icon} ${s.label}</div>
+      <div class="sec-bar"><div class="sec-fill" style="width:${st.pct}%;background:${col}"></div></div>
+      <div class="sec-pct" style="color:${col}">${st.correct}/${st.total}</div>
+    </div>`;
+  });
+  html+=`</div>
+  <div class="ak-table">
+    <div class="ak-header">
+      <span>📋 Full Answer Key</span>
+      <button class="ak-toggle" onclick="toggleAK(this)">Show All Answers ▾</button>
+    </div>
+    <div class="ak-body" id="ak-body">
+      <div class="ak-row" style="font-weight:700;background:rgba(0,0,0,.03);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--mid)">
+        <div>#</div><div>Question</div><div>Correct Answer</div><div>Result</div>
+      </div>`;
+  activeQs.forEach((q,i)=>{
+    const ok=answers[i]===q.answer;
+    const co=q.options.find(o=>o.startsWith(q.answer+'.'));
+    const ct=co?co.substring(3):q.answer;
+    html+=`<div class="ak-row ${ok?'ok':'bad'}">
+      <div class="ak-q">Q${i+1}</div>
+      <div>${q.q.substring(0,72)}${q.q.length>72?'…':''}</div>
+      <div class="ak-answer">${ct.substring(0,36)}${ct.length>36?'…':''}</div>
+      <div class="ak-result ${ok?'pass':'fail'}">${ok?'✓ Correct':'✗ Wrong'}</div>
+    </div>`;
+  });
+  html+=`</div></div>
+  <div class="cert-block"><h2>📋 Scoring Instructions</h2>
+    <p class="cert-text"><strong>Track:</strong> ${result.trackLabel} &nbsp;|&nbsp;
+    <strong>Questions:</strong> ${total} &nbsp;|&nbsp;
+    <strong>Pass mark:</strong> 90% (${Math.ceil(total*0.9)}+ correct)<br><br>
+    Agents scoring below the pass mark should review red-flagged sections above and retake.
+    There is no limit on retakes — every attempt is recorded automatically in the manager dashboard.<br><br>
+    <strong>For trainers:</strong> A passed certification confirms the agent is 90% signed off on Street and does not require repeat platform training on this track.</p></div>
+  <div class="res-actions">
+    <button class="btn-action solid ${hc}" onclick="window.print()">🖨 Print / Save PDF</button>
+    <button class="btn-action ${hc}" onclick="retake()">↺ Retake Test</button>
+  </div>`;
+  document.getElementById('res-body').innerHTML=html;
+}
+
+function toggleAK(btn){
+  const body=document.getElementById('ak-body');
+  const open=body.classList.toggle('open');
+  btn.textContent=open?'Hide Answers ▴':'Show All Answers ▾';
+}
+function retake(){ agent?showScreen('screen-mode'):showLogin() }
+
+/* ══════════════════════════════════════════════════
+   ADMIN
+══════════════════════════════════════════════════ */
+
+// Show the dedicated admin login screen (separate from agent flow)
+function showAdminLogin(){
+  // Clear any previous error and password field
+  const err=document.getElementById('admin-login-error');
+  const pw=document.getElementById('admin-pw-input');
+  if(err){ err.style.display='none'; err.textContent=''; }
+  if(pw) pw.value='';
+  showScreen('screen-admin-login');
+  setTimeout(()=>{ if(pw) pw.focus(); },150);
+}
+
+// Legacy alias — kept in case called elsewhere
+function showAdminModal(){ showAdminLogin(); }
+function hideAdminModal(){ showLanding(); }
+function handleModalOverlayClick(){ showLanding(); }
+
+function checkAdminPw(){
+  const pw=(document.getElementById('admin-pw-input')||{}).value||'';
+  const err=document.getElementById('admin-login-error');
+  if(pw===ADMIN_PASSWORD){
+    if(err){ err.style.display='none'; }
+    showScreen('screen-admin');
+    loadDashboard();
+  } else {
+    if(err){
+      err.textContent='Incorrect password. Please try again.';
+      err.style.display='block';
+      // Shake animation
+      const pw_input=document.getElementById('admin-pw-input');
+      if(pw_input){ pw_input.style.borderColor='#ef4444'; setTimeout(()=>pw_input.style.borderColor='',1500); }
+    }
+    document.getElementById('admin-pw-input').value='';
+    setTimeout(()=>document.getElementById('admin-pw-input').focus(),50);
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════ */
+window.addEventListener('load',()=>{
+  // Hide all screens first, then show landing correctly
+  Object.keys(SCREEN_DISPLAY).forEach(s=>{
+    const el=document.getElementById(s);
+    if(el) el.style.display='none';
+  });
+  showScreen('screen-landing');
+});
+</script>
+</body>
+</html>
